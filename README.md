@@ -6,10 +6,15 @@ Projeto baseado nas aulas do **[Felipe Deschamps](https://youtu.be/kjhu1LEmRpY)*
 
 ***Resumo do projeto***
 4 bots que automatizarão a criação e postagem do video.
+
 1 - pesquisar e tratar texto
+
 2 - pesquisar e tratar imagem
+
 3 - compor e exportar o video
+
 4 - configurar a postagem no youtube e postar
+
 
 > Explicação e uso abaixo do projeto oficial do Felipe
 
