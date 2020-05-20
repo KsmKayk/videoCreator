@@ -3,5 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/KsmKayk/videoCreator.git",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "algorithmia": "^0.3.10",
+    "readline-sync": "^1.4.10",
+    "sbd": "^1.0.18"
+  }
 }
