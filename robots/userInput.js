@@ -1,8 +1,14 @@
 const readline = require("readline-sync");
+const state = require("./state")
 
-function userInput(content) {
+function userInput() {
+  const content = {
+    maximumSentences: 7
+  };
+
   content.searchTerm = { articleName: askAndReturnSearchTerm(), lang: "pt" };
   content.prefix = askAndReturnPrefix();
+  state.save(content)
 
   function askAndReturnSearchTerm() {
     return readline.question("Digite o termo para ser pesquisado: ");
