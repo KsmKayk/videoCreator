@@ -89,8 +89,8 @@ async function robot() {
       const width = 1920
       const height = 1080
 
-      gm(`content/${sentenceIndex}-original.png[0]`)
-        .in()
+      gm()
+        .in(inputFile)
         .out('(')
           .out('-clone')
           .out('0')
@@ -109,7 +109,7 @@ async function robot() {
         .out('-compose', 'over')
         .out('-composite')
         .out('-extent', `${width}x${height}`)
-        .write(`content/${sentenceIndex}-converted.png`, (error) => {
+        .write(outputFile, (error) => {
           if (error) {
             return reject(error)
           }
