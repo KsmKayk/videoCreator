@@ -106,3 +106,6 @@ dist
 
 ./content.json
 content.json
+
+content/*png
+content/*jpg
