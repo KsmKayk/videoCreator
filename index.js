@@ -8,9 +8,9 @@ const robots = {
 
 async function start() {
 
-  //robots.userInput();
-  //await robots.text();
-  //await robots.image()
+  robots.userInput();
+  await robots.text();
+  await robots.image()
   await robots.video()
 
   //const content = robots.state.load()
