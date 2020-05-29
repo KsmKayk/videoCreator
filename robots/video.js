@@ -1,5 +1,8 @@
 const gm = require("gm").subClass({imageMagick: true})
 const state =  require("./state")
+const spawn = require("child-process").spawn
+const path = require("path")
+const rootPath = path.resolve(__dirname, "..")
 
 async function robot() {
   const content = state.load()
@@ -7,7 +10,8 @@ async function robot() {
   //await convertAllImages(content)
   //await createAllSentenceImages(content)
   //await createYoutubeThumbnail()
-  await createAfterEffectsScript(content)
+  //await createAfterEffectsScript(content)
+  await renderVideoWithAfterEffects()
 
   //state.save(content)
 
@@ -140,6 +144,12 @@ async function robot() {
 
   async function createAfterEffectsScript(content) {
     state.saveScript(content)
+  }
+
+  async function renderVideoWithAfterEffects() {
+    return new Promise((resolve, reject) => {
+      const aerenderFilePath = `/Applications`
+    })
   }
 }
 
