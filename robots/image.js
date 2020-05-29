@@ -84,12 +84,15 @@ async function robot() {
   }
   async function convertImage(sentenceIndex) {
     return new Promise((resolve, reject) => {
-      const inputFile = `./content/${sentenceIndex}-original.png[0]`
+      const inputFile = `./content/${sentenceIndex}-original.png`
       const outputFile = `./content/${sentenceIndex}-converted.png`
       const width = 1920
       const height = 1080
+      console.log(inputFile, outputFile)
 
-      gm()
+      try {
+        gm()
+        .command("magick")
         .in(inputFile)
         .out('(')
           .out('-clone')
@@ -100,11 +103,11 @@ async function robot() {
         .out(')')
         .out('(')
           .out('-clone')
-          .out('0')
+         .out('0')
           .out('-background', 'white')
           .out('-resize', `${width}x${height}`)
-        .out(')')
-        .out('-delete', '0')
+       .out(')')
+       .out('-delete', '0')
         .out('-gravity', 'center')
         .out('-compose', 'over')
         .out('-composite')
@@ -114,9 +117,13 @@ async function robot() {
             return reject(error)
           }
 
-          console.log(`> Image converted: ${inputFile}`)
-          resolve()
+         console.log(`> Image converted: ${inputFile}`)
+         resolve()
         })
+      } catch (error) {
+        reject(error)
+      }
+      
 
     })
   }
