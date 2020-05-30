@@ -17,35 +17,55 @@ async function robot() {
   state.save(content)
 
   async function fetchImagesOfAllSentences(content) {
-    for(let sentenceIndex = 0; sentenceIndex < content; sentenceIndex++) {
-      let query 
+    for(let sentenceIndex = 0; sentenceIndex < content.sentences.length; sentenceIndex++) {
+      let query
+      let thumb 
 
       if (sentenceIndex === 0) {
         query = `${content.searchTerm.articleName}`
+        thumb = true
       } else {
         query = `${content.searchTerm.articleName} ${content.sentences[sentenceIndex].keywords[0]}`
+        thumb = false
       }
       
       console.log(`> [Image-Robot] Procurando imagens no google com: "${query}"`)
-      content.sentences[sentenceIndex].images = await fetchGoogleAndReturnImagesLink(query)
+      content.sentences[sentenceIndex].images = await fetchGoogleAndReturnImagesLink(query, thumb)
       content.sentences[sentenceIndex].googleSearchQuery = query
     }
   }
 
-  async function fetchGoogleAndReturnImagesLink(query) {
-    const response = await customSearch.cse.list({
-      auth: googleSearchCredentials.apiKey,
-      cx: googleSearchCredentials.searchEngineId,
-      q: query,
-      searchType: "Image",
-      num: 5
-    })
+  async function fetchGoogleAndReturnImagesLink(query, thumb) {
+    if (thumb) {
+      const response = await customSearch.cse.list({
+        auth: googleSearchCredentials.apiKey,
+        cx: googleSearchCredentials.searchEngineId,
+        q: query,
+        searchType: "Image",
+        imgSize:"huge",
+        num: 5
+      })
+  
+      const imagesUrl = response.data.items.map((item) => {
+        return item.link
+      })
+      return imagesUrl
+    } else {
+      const response = await customSearch.cse.list({
+        auth: googleSearchCredentials.apiKey,
+        cx: googleSearchCredentials.searchEngineId,
+        q: query,
+        searchType: "Image",
+        num: 5
+      })
+  
+      const imagesUrl = response.data.items.map((item) => {
+        return item.link
+      })
+      return imagesUrl
+    }
 
-    const imagesUrl = response.data.items.map((item) => {
-      return item.link
-    })
-
-    return imagesUrl
+    
   }
 
   async function downloadAllImages(content) {
