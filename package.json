@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "algorithmia": "^0.3.10",
+    "express": "^4.17.1",
     "gm": "^1.23.1",
     "googleapis": "^51.0.0",
     "ibm-watson": "^5.5.0",
