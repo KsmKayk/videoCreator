@@ -1,7 +1,10 @@
 {
   "name": "videoCreator",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "repository": "https://github.com/KsmKayk/videoCreator.git",
   "license": "MIT",
   "dependencies": {
@@ -13,5 +16,8 @@
     "image-downloader": "^4.0.1",
     "readline-sync": "^1.4.10",
     "sbd": "^1.0.18"
+  },
+  "devDependencies": {
+    "electron": "^9.0.3"
   }
 }
